@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ProdutosRequest;
 use App\Models\Produto;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -28,8 +29,9 @@ class ProdutoController extends Controller
         return view('produto.formulario');
     }
 
-    public function adiciona(Request $request)
+    public function adiciona(ProdutosRequest $request)
     {
+
         Produto::create($request->all());
 
         return redirect()->action([ProdutoController::class, 'lista'])->with('mensagem', 'Produto ' . $request->nome . ' adicionado com sucesso!');
@@ -53,18 +55,12 @@ class ProdutoController extends Controller
         $produto = Produto::find($id);
         return view('produto.editar', compact('produto'));
     }
-    public function atualiza(Request $request, $id)
+    public function atualiza(ProdutosRequest $request, $id)
     {
-        $validatedData = $request->validate([
-            'nome' => 'required|string|max:255',
-            'descricao' => 'required|string',
-            'valor' => 'required|numeric',
-            'quantidade' => 'required|integer',
-        ]);
-
         // Atualização do produto
         $produto = Produto::findOrFail($id);
-        $produto->update($validatedData);
+        $produto->update($request->all());
+
         return redirect()->action([ProdutoController::class, 'lista']);
     }
 }

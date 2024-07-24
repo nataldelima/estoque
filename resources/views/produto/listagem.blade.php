@@ -39,8 +39,6 @@
     </span>
 </h4>
 
-
-
 @if (session('mensagem'))
 <div class="alert alert-success m-5">
     {{session('mensagem')}}

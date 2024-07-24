@@ -1,6 +1,15 @@
 @extends('layout.principal')
 @section('conteudo')
 <h1>Editar Produto</h1>
+@if (count($errors) > 0)
+<div class="alert alert-danger">
+    <ul>
+        @foreach ($errors->all() as $error)
+        <li> {{ $error }}</li>
+        @endforeach
+    </ul>
+</div>
+@endif
 <form action="/produtos/atualiza/{{$produto->id}}" method="POST">
     @csrf
     <div class="form-group">
