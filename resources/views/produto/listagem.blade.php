@@ -25,7 +25,10 @@
         <td>R$ {{number_format($p->valor,2,',','.') }}</td>
         <td>{{$p->descricao }}</td>
         <td class="text-center">{{$p->quantidade }}</td>
-        <td class="text-end"><a href="produtos/mostra/{{$p->id }}" class="btn btn-primary"><i class="bi bi-search"></i></a> <a href="#" class="btn btn-danger"><i class="bi bi-trash3"></i></a></td>
+        <td class="text-end"><a href="produtos/mostra/{{$p->id }}" class="btn btn-primary"><i class="bi bi-search"></i></a> <a href="produtos/edita/{{$p->id}}" class="btn btn-warning"><i class="bi bi-pencil-square"></i></a>
+            <a href="produtos/remove/{{$p->id}}" class="btn btn-danger"><i class="bi bi-trash3"></i></a>
+
+        </td>
     </tr>
     @endforeach
 </table>
@@ -35,4 +38,11 @@
         Um ou menos ítens no estoque.
     </span>
 </h4>
+
+@if (session('nome'))
+<div class="alert alert-success m-5">
+    O produto {{ session('nome') }} foi adicionado com sucesso!
+</div>
+@endif
+
 @endsection
