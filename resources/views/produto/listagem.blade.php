@@ -39,9 +39,11 @@
     </span>
 </h4>
 
-@if (session('nome'))
+
+
+@if (session('mensagem'))
 <div class="alert alert-success m-5">
-    O produto {{ session('nome') }} foi adicionado com sucesso!
+    {{session('mensagem')}}
 </div>
 @endif
 

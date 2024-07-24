@@ -32,7 +32,7 @@ class ProdutoController extends Controller
     {
         Produto::create($request->all());
 
-        return redirect()->action([ProdutoController::class, 'lista'])->withInput($request->only('nome'));
+        return redirect()->action([ProdutoController::class, 'lista'])->with('mensagem', 'Produto ' . $request->nome . ' adicionado com sucesso!');
     }
 
     public function listaJson()
